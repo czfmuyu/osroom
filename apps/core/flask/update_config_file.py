@@ -173,13 +173,13 @@ def push_to_db(mdb_sys,local_config = None, now_version=None):
                                      {"$addToSet": {"used_versions": now_version}})
 
     # 更新主机信息
-
     host_version = mdb_sys.db.sys_host.find_one({"type":"web", "host_info.local_ip":host_info["local_ip"]})
     up_version = {"conf_version": now_version, "switch_conf_version": None}
     if host_version:
         up_version["host_info"] = host_version["host_info"]
     else:
         up_version["disable_update_conf"] = 0
+        up_version["host_info"] = {}
 
     for k,v in host_info.items():
         up_version["host_info"][k] = v

@@ -10,7 +10,7 @@
                 <a href="https://github.com/osroom/osroom" target="_blank">
                     <i class="fa fa-github"></i> GitHub
                 </a>下载源代码')}}.
-                 {{_("如果对你有帮助, 你通过以下方式支持我们, 将用于支付服务器等必要费用！")}}.
+                 {{_("如果对你有帮助, 你又有点小钱，那么你可以通过以下方式支持我们, 将用于支付服务器等必要费用！")}}.
             </span>
         </div>
 
@@ -38,13 +38,6 @@
            </div>
        </div>
 
-       <div id="other" style="padding-bottom:30px;">
-           <h3>{{_("其他支持方式")}}</h3>
-            <hr>
-           <strong>{{_("广告投放")}}</strong>
-            <span>{{_("你也选择在我们的DEMO网站广告栏投放广告(当有空闲广告位时)")}}-</span>
-           <a href="http://demo.osroom.com" target="_blank">OSROOM DEMO</a>
-       </div>
 
        <div v-if="contact" id="contact">
             <h3>{{_("联系方式")}}</h3>
@@ -79,10 +72,10 @@
       el: '#app',
       delimiters:['{[', ']}'],
       data:{
-            personal_support:[],
-            sponsors:[],
-            contact:[],
-            support:[]
+            personal_support:null,
+            sponsors:null,
+            contact:null,
+            support:null
 
       },
       filters: {
