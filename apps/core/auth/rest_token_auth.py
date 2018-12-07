@@ -4,6 +4,8 @@ from gettext import gettext
 from random import randint
 from uuid import uuid1
 import time
+
+import sys
 from bson import ObjectId
 from flask import current_app, request
 from werkzeug.exceptions import Unauthorized
@@ -27,7 +29,14 @@ class RestTokenAuth():
         id:str
         :return: string
         """
-        id = "{}{}".format(str(uuid1()), randint(0, 999999))
+        pyver_info = sys.version_info
+        if pyver_info[0]==3 and pyver_info[1]==6:
+            # 3.6版本以上才使用secrets
+            import secrets
+            id = "{}{}".format(str(uuid1()), secrets.token_urlsafe(32))
+        else:
+            id = "{}{}".format(str(uuid1()), randint(0, 999999))
+
         return {"token": base64.b64encode(id.encode()).decode()}
 
     '''

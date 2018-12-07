@@ -22,6 +22,5 @@ def api_adm_send_msg():
         username:<array>, 接收信息的用户名, 如["test", "test2"]
     :return:
     '''
-
     data = send_msg()
     return response_format(data)

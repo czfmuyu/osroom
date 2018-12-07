@@ -59,7 +59,6 @@ def send_msg():
         mdb_sys.db.sys_msg_img.insert({"time":time.time(), "imgs":imgs,
                                          "send_user_id":current_user.str_id,
                                          "title":title})
-
     for send_t in send_type:
         if send_t == "on_site":
             for user in users:
@@ -73,11 +72,9 @@ def send_msg():
                 data["msg_type"] = "w"
 
         elif send_t == "email":
-
             to_emails = []
             for user in users:
                 to_emails.append(user["email"])
-
             if to_emails:
                 send_email(subject=title,
                            recipients=to_emails,
