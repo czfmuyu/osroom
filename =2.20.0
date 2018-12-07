@@ -1,0 +1,12 @@
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Collecting requests
+  Downloading https://mirrors.aliyun.com/pypi/packages/ff/17/5cbb026005115301a8fb2f9b0e3e8d32313142fe8b617070e7baad20554f/requests-2.20.1-py2.py3-none-any.whl (57kB)
+Requirement already satisfied, skipping upgrade: idna<2.8,>=2.5 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (2.6)
+Requirement already satisfied, skipping upgrade: urllib3<1.25,>=1.21.1 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (1.22)
+Requirement already satisfied, skipping upgrade: certifi>=2017.4.17 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (2017.7.27.1)
+Requirement already satisfied, skipping upgrade: chardet<3.1.0,>=3.0.2 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (3.0.4)
+Installing collected packages: requests
+  Found existing installation: requests 2.18.4
+    Uninstalling requests-2.18.4:
+      Successfully uninstalled requests-2.18.4
+Successfully installed requests-2.20.1
