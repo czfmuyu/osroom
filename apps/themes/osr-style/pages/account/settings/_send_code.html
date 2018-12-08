@@ -59,32 +59,41 @@
         var result = osrHttp("GET","/api/account/data/availability",d);
         result.then(function (r) {
             if(r.data.msg_type == "s"){
-                d = {
-                    account:"{{current_user.email}}",
-                    account_type:"email",
-                    code:vue.img_code,
-                    code_url_obj:JSON.stringify(vue.img_code_url_obj)
-                };
-                d2 = {
-                    account:vue.email,
-                    account_type:"email",
-                    code:vue.img_code,
-                    code_url_obj:JSON.stringify(vue.img_code_url_obj)
-                };
-                // 提交数据
-                var result = osrHttp("POST", "/api/vercode/send", d);
-                result.then(function (r) {
-                    send_success_process(r);
-                }).catch(function(r){
-                    send_failed(r);
-                });
+                //邮件可用
+                if(!vue.current_email_send_success){
+                    d = {
+                        account:"{{current_user.email}}",
+                        account_type:"email",
+                        code:vue.img_code,
+                        code_url_obj:JSON.stringify(vue.img_code_url_obj)
+                    };
 
-                var result2 = osrHttp("POST", "/api/vercode/send", d2);
-                result2.then(function (r) {
-                    send_success_process(r)
-                }).catch(function(r){
-                    send_failed(r);
-                });
+                    // 提交数据
+                    var result = osrHttp("POST", "/api/vercode/send", d);
+                    result.then(function (r) {
+                        vue.current_email_send_success=1;
+                        send_success_process(r);
+                    }).catch(function(r){
+                        send_failed(r);
+                    });
+                }
+
+                if(!vue.new_email_send_success){
+                    d2 = {
+                        account:vue.email,
+                        account_type:"email",
+                        code:vue.img_code,
+                        code_url_obj:JSON.stringify(vue.img_code_url_obj)
+                    };
+                    var result2 = osrHttp("POST", "/api/vercode/send", d2);
+                    result2.then(function (r) {
+                        vue.new_email_send_success=1;
+                        send_success_process(r);
+                    }).catch(function(r){
+                        send_failed(r);
+                    });
+               }
+
             }
         });
    }
@@ -93,28 +102,28 @@
         //发送成功
         if(r.data.msg_type=="s"){
             //发送成功
-            $("#send_code_div").hide();
+            $("#send_code_div").hide();//模态框
             $("#send_code_2_div").show();
 
             //验证码发送成功, 关闭已经打开的模态框(如果已经打开)
             $('#send_code_modal').modal('hide');
 
-            $("#send_code_2").attr("disabled","disabled");
-            var n = 60;
-            window.setInterval(
-                function(){
-                    if(!n){
-                        $("#send_code_2").attr("disabled",false);
-                        $('#send_code_2').text("{{_('发送验证码')}}")
-                        return;
-                    };
-                    $('#send_code_2').text(n+"s{{_('后重发')}}")
-                    n -= 1;
-                },
-            1000);
-
+            if(vue.new_email_send_success && vue.current_email_send_success){
+                $("#send_code_2").attr("disabled","disabled");
+                var n = 60;
+                window.setInterval(
+                    function(){
+                        if(!n){
+                            $("#send_code_2").attr("disabled",false);
+                            $('#send_code_2').text("{{_('发送验证码')}}")
+                            return;
+                        };
+                        $('#send_code_2').text(n+"s{{_('后重发')}}")
+                        n -= 1;
+                    },
+                1000);
+            }
         }
-
    }
 
    function send_failed(r){

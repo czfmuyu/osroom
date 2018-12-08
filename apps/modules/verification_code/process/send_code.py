@@ -108,7 +108,7 @@ def call_verification(code_url_obj, code):
             # 大于单位时间最大调用次数访问验证
             data = {'msg': gettext("The system detects that your network is sending verification codes frequently."
                                    " Please try again later!"),
-                    'msg_type': "e", "http_status": 401}
+                    'msg_type': "w", "http_status": 401}
             return False, data
 
         elif freq > get_config("verify_code", "MAX_NUM_SEND_SAMEIP_PERMIN_NO_IMGCODE") + 1:
@@ -127,7 +127,7 @@ def call_verification(code_url_obj, code):
             # 如果刚大于单位时间内，无图片验证码情况下的最大调用次数, 返回图片验证码验证码
             data = {'msg': gettext("The system detected that your operation is too frequent and"
                                    " you need to verify the picture verification code"),
-                    'msg_type': "e", "http_status": 401}
+                    'msg_type': "w", "http_status": 401}
 
             data["open_img_verif_code"] = True
             data["code"] = create_img_code()
