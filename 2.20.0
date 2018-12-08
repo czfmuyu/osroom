@@ -1,6 +1,0 @@
-Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
-Requirement already up-to-date: requests in /home/work/project/venv3/lib/python3.4/site-packages (2.20.1)
-Requirement already satisfied, skipping upgrade: idna<2.8,>=2.5 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (2.6)
-Requirement already satisfied, skipping upgrade: urllib3<1.25,>=1.21.1 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (1.22)
-Requirement already satisfied, skipping upgrade: certifi>=2017.4.17 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (2017.7.27.1)
-Requirement already satisfied, skipping upgrade: chardet<3.1.0,>=3.0.2 in /home/work/project/venv3/lib/python3.4/site-packages (from requests) (3.0.4)
