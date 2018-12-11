@@ -38,7 +38,7 @@ def json_to_pyseq(tjson):
         return None
     elif not isinstance(tjson, (list, dict, tuple)) and tjson != "":
 
-        if isinstance(tjson, (str, bytes)) and tjson[0] not in ["{", "["]:
+        if isinstance(tjson, (str, bytes)) and tjson[0] not in ["{", "[", "("]:
             return tjson
         try:
             tjson = json.loads(tjson)
