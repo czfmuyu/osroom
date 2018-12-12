@@ -21,6 +21,7 @@ class ErrorHandler():
     '''
     配置各种异常状态返回数据 http status
     '''
+
     def __init__(self, app=None):
         if app:
             self.init_app(app)
