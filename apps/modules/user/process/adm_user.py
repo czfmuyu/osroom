@@ -52,7 +52,7 @@ def users():
                                    ]
     us = mdb_user.db.user.find(query_conditions, {"password": 0})
     data_cnt = us.count(True)
-    users = list(us.skip(pre * (page - 1)).limit(pre))
+    users = list(us.sort([("create_at",-1)]).skip(pre * (page - 1)).limit(pre))
     roles = list(mdb_user.db.role.find({}))
     for user in users:
         user['_id'] = str(user['_id'])
@@ -109,9 +109,12 @@ def user_edit():
         # 权限检查
         current_user_role = mdb_user.db.role.find_one({"_id": ObjectId(current_user.role_id)})
         edit_user_role = mdb_user.db.role.find_one({"_id": ObjectId(user["role_id"])})
-        if get_num_digits(current_user_role["permissions"]) <= get_num_digits(edit_user_role["permissions"]):
+        if edit_user_role \
+                and get_num_digits(current_user_role["permissions"]) \
+                <= get_num_digits(edit_user_role["permissions"]):
             # 没有权限修改
-            data = {"msg_type": "w", "msg": gettext("No permission modification"), "http_status":401}
+            data = {"msg_type": "w", "msg": gettext("No permission modification"),
+                    "http_status":401}
             return data
 
     r = mdb_user.db.user.update_one({"_id": ObjectId(id)}, {"$set": update_data})

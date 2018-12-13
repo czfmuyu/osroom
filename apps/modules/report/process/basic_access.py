@@ -1,6 +1,5 @@
 # -*-coding:utf-8-*-
 import time
-
 from apps.app import mdb_web, mdb_user, mdb_sys, cache
 from apps.core.utils.get_config import get_config
 

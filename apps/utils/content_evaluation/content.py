@@ -15,7 +15,7 @@ def content_inspection_text(content):
         # 调用内容审核插件
         data = plugin_manager.call_plug("content_inspection_text", content=content)
         if data == "__no_plugin__":
-            if current_user.is_staff:
+            if current_user.is_authenticated and current_user.is_staff:
                 return {"score":0, "label":"no_plugin"}
             else:
                 return {"score":100, "label": "no_plugin"}
