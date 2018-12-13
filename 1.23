@@ -1,5 +1,0 @@
-Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
-Collecting urllib3
-  Downloading https://mirrors.aliyun.com/pypi/packages/62/00/ee1d7de624db8ba7090d1226aebefab96a2c71cd5cfa7629d6ad3f61b79e/urllib3-1.24.1-py2.py3-none-any.whl (118kB)
-Installing collected packages: urllib3
-Successfully installed urllib3-1.24.1
