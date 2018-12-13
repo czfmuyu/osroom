@@ -52,7 +52,7 @@ def users():
                                    ]
     us = mdb_user.db.user.find(query_conditions, {"password": 0})
     data_cnt = us.count(True)
-    users = list(us.skip(pre * (page - 1)).limit(pre))
+    users = list(us.sort([("create_at",-1)]).skip(pre * (page - 1)).limit(pre))
     roles = list(mdb_user.db.role.find({}))
     for user in users:
         user['_id'] = str(user['_id'])
